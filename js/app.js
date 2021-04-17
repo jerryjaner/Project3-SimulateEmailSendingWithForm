@@ -27,5 +27,38 @@ function validateField(){
     let errors;
 
     // Validate the Length of the Field
-    validateLength(this)
+    validateLength(this);
+
+    // Validate the Email
+    if(this.type === 'email'){
+        validateEmail(this);
+    }
+}
+// Validate the Length of the field
+function validateLength(field){
+      if(field.value.length > 0){
+        field.style.borderBottomColor = 'green';
+        field.classList.remove('error');
+    } 
+    else{
+        field.style.borderBottomColor = 'red';
+        field.classList.add('error');
+
+    }
+}
+// Validate Email (checks for @ in the value)
+function validateEmail(field){
+    let emailText = field.value;
+
+    // checks if the emailtext contains the @ sign
+    if(emailText.indexOf('@') !==-1){
+        field.style.borderBottomColor = 'green';
+        field.classList.remove('error');
+    } 
+    else{
+        field.style.borderBottomColor = 'red';
+        field.classList.add('error');
+
+    }   
+    
 }
