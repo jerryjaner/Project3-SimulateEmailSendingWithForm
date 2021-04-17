@@ -2,7 +2,9 @@
  const sendBtn = document.getElementById('sendBtn'),
        email = document.getElementById('email'),
        subject = document.getElementById('subject'),
-       message = document.getElementById('message');
+       message = document.getElementById('message'),
+       resetBtn = document.getElementById('resetBtn'),
+       sendEmailForm = document.getElementById('email-form');
 
 // Event Listeners
 eventListeners();
@@ -15,6 +17,9 @@ function eventListeners(){
     email.addEventListener('blur',validateField);
     subject.addEventListener('blur',validateField);
     message.addEventListener('blur',validateField);
+
+    // Send Email and reset button
+    resetBtn.addEventListener('click',resetForm);
 
 }
 
@@ -32,6 +37,17 @@ function validateField(){
     // Validate the Email
     if(this.type === 'email'){
         validateEmail(this);
+    }
+    
+    // Both will return errors, then check if there're any error
+    errors = document.querySelectorAll('.error');
+    
+    // Check that the inputs are not empty
+    if(email.value !== '' && subject.value !== '' && message.value !== ''){
+        if(errors.length === 0){
+            // Button should be enable
+            sendBtn.disabled = false;
+        }
     }
 }
 // Validate the Length of the field
@@ -61,4 +77,10 @@ function validateEmail(field){
 
     }   
     
+}
+
+// reset the form
+function resetForm(){
+    sendEmailForm.reset();
+
 }
