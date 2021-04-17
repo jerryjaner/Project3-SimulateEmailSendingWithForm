@@ -36,11 +36,27 @@ function sendEmail(e){
     const spinner = document.querySelector('#spinner');
     spinner.style.display = 'block';
 
+    //show the image
+    const sendEmailImg = document.createElement('img');
+    sendEmailImg.src = 'img/mail.gif';
+    sendEmailImg.style.display = 'block';
+
     // Hide spinner then show the send Email image
     setTimeout(function(){
             // Hide the spinner
             spinner.style.display = 'none';
-    }, 3000)
+
+            //show the image
+            document.querySelector('#loaders').appendChild(sendEmailImg);
+
+            // after 5 sec hide the image ang reset the form
+            setTimeout(function(){
+                sendEmailForm.reset();
+                sendEmailImg.remove();
+
+            }, 5000);
+
+    }, 3000);
 }
 // Validate  Fields
 function validateField(){
